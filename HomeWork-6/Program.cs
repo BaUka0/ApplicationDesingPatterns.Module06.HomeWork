@@ -41,6 +41,11 @@ namespace HomeWork_6
             Console.WriteLine("\nCloned Order:");
             PrintOrder(clonedOrder);*/
 
+            Parallel.Invoke(
+            () => TestConfigurationManager(),
+            () => TestConfigurationManager(),
+            () => TestConfigurationManager()
+        );
         }
         static void PrintOrder(Order order)
         {
@@ -56,6 +61,11 @@ namespace HomeWork_6
             {
                 Console.WriteLine($"\t{discount.Type}: {discount.Percentage}%");
             }
+        }
+        static void TestConfigurationManager()
+        {
+            var configManager = ConfigurationManager.GetInstance();
+            Console.WriteLine($"Поток {Environment.CurrentManagedThreadId}: Экземпляр получен.");
         }
     }
 }
